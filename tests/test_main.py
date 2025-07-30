@@ -1,6 +1,8 @@
-import pytest
 import os
-from src.main import load_categories_from_json, Category, Product
+
+import pytest
+
+from src.main import Category, Product, load_categories_from_json
 
 
 @pytest.fixture
@@ -9,6 +11,7 @@ def sample_products():
         Product("Смартфон", "Мощный смартфон", 499.99, 10),
         Product("Чехол", "Силиконовый чехол", 9.99, 50)
     ]
+
 
 @pytest.fixture
 def sample_category(sample_products):
