@@ -1,5 +1,7 @@
 import pytest
-from src.main import Product, Category
+import os
+from src.main import load_categories_from_json, Category, Product
+
 
 @pytest.fixture
 def sample_products():
@@ -34,3 +36,16 @@ def test_category_init(sample_category):
 def test_category_counts(sample_category):
     assert Category.category_count == 1
     assert Category.product_count == 2
+
+
+def test_load_categories_from_json():
+    filepath = os.path.join("data", "products.json")
+    categories = load_categories_from_json(filepath)
+
+    assert isinstance(categories, list)
+    assert len(categories) == 2
+
+    for category in categories:
+        assert isinstance(category, Category)
+        for product in category.products:
+            assert isinstance(product, Product)
