@@ -1,0 +1,11 @@
+from src.json_loader import load_categories_from_json
+
+
+def main():
+    categories = load_categories_from_json("data/products.json")
+    for category in categories:
+        print(f"{category.name} ({len(category.products)} товаров)")
+
+
+if __name__ == "__main__":
+    main()

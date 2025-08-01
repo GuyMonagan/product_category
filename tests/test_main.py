@@ -2,7 +2,9 @@ import os
 
 import pytest
 
-from src.main import Category, Product, load_categories_from_json
+from src.product import Product
+from src.category import Category
+from src.json_loader import load_categories_from_json
 
 
 @pytest.fixture
