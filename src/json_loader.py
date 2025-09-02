@@ -22,14 +22,12 @@ def load_categories_from_json(filepath: str) -> list[Category]:
                 name=p["name"],
                 description=p["description"],
                 price=p["price"],
-                quantity=p["quantity"]
+                quantity=p["quantity"],
             )
             for p in cat["products"]
         ]
         category = Category(
-            name=cat["name"],
-            description=cat["description"],
-            products=products
+            name=cat["name"], description=cat["description"], products=products
         )
         categories.append(category)
 

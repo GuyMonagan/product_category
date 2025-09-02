@@ -1,5 +1,5 @@
-from category import Category
-from product import Product
+from src.category import Category
+from src.product import Product
 
 
 def test_products_getter_format_and_order():
@@ -7,10 +7,7 @@ def test_products_getter_format_and_order():
     p2 = Product("Молоко", "1 л", 60, 5)
     cat = Category("Молочка", "Молочные продукты", [p1, p2])
 
-    expected = (
-        "Йогурт, 80 руб. Остаток: 10 шт.\n"
-        "Молоко, 60 руб. Остаток: 5 шт."
-    )
+    expected = "Йогурт, 80 руб. Остаток: 10 шт.\n" "Молоко, 60 руб. Остаток: 5 шт."
     assert cat.products == expected
 
 

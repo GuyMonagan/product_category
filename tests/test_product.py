@@ -1,8 +1,6 @@
 import builtins
 
-import pytest
-
-from product import Product
+from src.product import Product
 
 
 def test_price_getter_and_setter_increase():
@@ -55,3 +53,20 @@ def test_new_product_merges_by_name_and_picks_higher_price():
     assert merged.quantity == 7
     # Цена — более высокая
     assert merged.price == 45
+
+def test_new_product_without_existing():
+    # когда аргумент existing_products не был передан в метод
+    data = {
+        "name": "Test Product",
+        "description": "Тестовое описание",
+        "price": 100,
+        "quantity": 2
+    }
+
+    product = Product.new_product(data)
+
+    assert isinstance(product, Product)
+    assert product.name == "Test Product"
+    assert product.quantity == 2
+    assert product.price == 100
+

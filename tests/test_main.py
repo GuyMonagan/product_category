@@ -11,7 +11,7 @@ from src.product import Product
 def sample_products():
     return [
         Product("Смартфон", "Мощный смартфон", 499.99, 10),
-        Product("Чехол", "Силиконовый чехол", 9.99, 50)
+        Product("Чехол", "Силиконовый чехол", 9.99, 50),
     ]
 
 
