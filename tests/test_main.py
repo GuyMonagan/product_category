@@ -2,9 +2,9 @@ import os
 
 import pytest
 
-from src.product import Product
 from src.category import Category
 from src.json_loader import load_categories_from_json
+from src.product import Product
 
 
 @pytest.fixture
@@ -52,4 +52,3 @@ def test_load_categories_from_json():
     assert all(isinstance(c, Category) for c in categories)
     for category in categories:
         assert all(isinstance(p, Product) for p in category._Category__products)
-

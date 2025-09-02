@@ -1,5 +1,6 @@
 from src.product import Product
 
+
 class Category:
     """Класс, представляющий категорию товаров."""
 

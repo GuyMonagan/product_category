@@ -1,5 +1,6 @@
-from product import Product
 from category import Category
+from product import Product
+
 
 def test_products_getter_format_and_order():
     p1 = Product("Йогурт", "Клубничный", 80, 10)
@@ -11,6 +12,7 @@ def test_products_getter_format_and_order():
         "Молоко, 60 руб. Остаток: 5 шт."
     )
     assert cat.products == expected
+
 
 def test_add_product_appends_and_increments_counter():
     p1 = Product("Телефон", "Смарт", 1000, 1)

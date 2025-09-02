@@ -1,11 +1,15 @@
 import builtins
+
 import pytest
+
 from product import Product
+
 
 def test_price_getter_and_setter_increase():
     p = Product("Йогурт", "Клубничный", 80, 10)
     p.price = 120  # повышение — без вопросов
     assert p.price == 120
+
 
 def test_price_setter_non_positive_does_not_change_and_prints(capsys):
     p = Product("Молоко", "1 л", 60, 5)
@@ -14,11 +18,13 @@ def test_price_setter_non_positive_does_not_change_and_prints(capsys):
     assert "Цена не должна быть нулевая или отрицательная" in captured
     assert p.price == 60
 
+
 def test_price_lowering_confirms_yes(monkeypatch):
     p = Product("Сыр", "Мягкий", 300, 2)
     monkeypatch.setattr(builtins, "input", lambda _: "y")
     p.price = 250  # понижение с подтверждением
     assert p.price == 250
+
 
 def test_price_lowering_confirms_no(monkeypatch, capsys):
     p = Product("Сыр", "Полутвердый", 300, 2)
@@ -28,6 +34,7 @@ def test_price_lowering_confirms_no(monkeypatch, capsys):
     assert "Изменение отменено" in captured
     assert p.price == 300  # не изменилось
 
+
 def test_new_product_creates_when_not_exists():
     data = {"name": "Кефир", "description": "2.5%", "price": 90, "quantity": 3}
     p = Product.new_product(data, existing_products=[])
@@ -35,6 +42,7 @@ def test_new_product_creates_when_not_exists():
     assert p.name == "Кефир"
     assert p.price == 90
     assert p.quantity == 3
+
 
 def test_new_product_merges_by_name_and_picks_higher_price():
     existing = [Product("Хлеб", "Бородинский", 40, 5)]
