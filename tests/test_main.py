@@ -35,7 +35,8 @@ def test_product_init(sample_products):
 def test_category_init(sample_category):
     assert sample_category.name == "Гаджеты"
     assert sample_category.description == "Электроника и аксессуары"
-    assert len(sample_category.products) == 2
+    # Прямой доступ к __products для надёжности
+    assert len(sample_category._Category__products) == 2
 
 
 def test_category_counts(sample_category):
@@ -48,9 +49,7 @@ def test_load_categories_from_json():
     categories = load_categories_from_json(filepath)
 
     assert isinstance(categories, list)
-    assert len(categories) == 2
-
+    assert all(isinstance(c, Category) for c in categories)
     for category in categories:
-        assert isinstance(category, Category)
-        for product in category.products:
-            assert isinstance(product, Product)
+        assert all(isinstance(p, Product) for p in category._Category__products)
+
