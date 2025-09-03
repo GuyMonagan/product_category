@@ -1,5 +1,6 @@
 class CategoryIterator:
-    """ Считает товары по категориям """
+    """Считает товары по категориям"""
+
     def __init__(self, category):
         self._products = category.products
         self._index = 0

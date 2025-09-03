@@ -1,6 +1,7 @@
-from src.product import Product
-from src.category_iterator import CategoryIterator
 from src.category import Category
+from src.category_iterator import CategoryIterator
+from src.product import Product
+
 
 def test_category_iterator():
     products = [

@@ -1,5 +1,7 @@
 import builtins
 
+import pytest
+
 from src.product import Product
 
 
@@ -54,13 +56,14 @@ def test_new_product_merges_by_name_and_picks_higher_price():
     # Цена — более высокая
     assert merged.price == 45
 
+
 def test_new_product_without_existing():
     # когда аргумент existing_products не был передан в метод
     data = {
         "name": "Test Product",
         "description": "Тестовое описание",
         "price": 100,
-        "quantity": 2
+        "quantity": 2,
     }
 
     product = Product.new_product(data)
@@ -82,4 +85,5 @@ def test_product_str_and_add():
 
 def test_product_add_invalid_type():
     p = Product("X", "desc", 10, 1)
-    assert p.__add__("not a product") == NotImplemented
+    with pytest.raises(TypeError, match="Нельзя складывать товары разных типов"):
+        p + "not a product"

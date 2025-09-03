@@ -1,5 +1,5 @@
-from src.product import Product
 from src.category_iterator import CategoryIterator
+from src.product import Product
 
 
 class Category:
@@ -23,19 +23,18 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
-
     def __str__(self) -> str:
-        """ Добавляет строкое отображение для класса Category """
+        """Добавляет строкое отображение для класса Category"""
         total_quantity = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
-
 
     def __iter__(self):
         return CategoryIterator(self)
 
-
     def add_product(self, product: Product):
-        """Добавляет товар в категорию и увеличивает счётчик товаров."""
+        """Ограничение добавления продуктов в категорию"""
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только объекты Product или его подклассов")
         self.__products.append(product)
         Category.product_count += 1
 
