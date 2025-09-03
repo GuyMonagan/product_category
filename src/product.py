@@ -17,6 +17,18 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+
+    def __str__(self) -> str:
+        """ Добавляет строкое отображение для класса Product """
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """ Считает общее колличество товаров """
+        if isinstance(other, Product):
+            return self.price * self.quantity + other.price * other.quantity
+        return NotImplemented
+
+
     @property
     def price(self):
         """Возвращает текущую цену товара."""

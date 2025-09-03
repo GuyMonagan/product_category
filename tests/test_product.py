@@ -70,3 +70,16 @@ def test_new_product_without_existing():
     assert product.quantity == 2
     assert product.price == 100
 
+
+def test_product_str_and_add():
+    p1 = Product("Товар A", "Описание", 100.0, 3)
+    p2 = Product("Товар B", "Описание", 200.0, 2)
+
+    assert str(p1) == "Товар A, 100.0 руб. Остаток: 3 шт."
+    assert str(p2) == "Товар B, 200.0 руб. Остаток: 2 шт."
+    assert p1 + p2 == 100.0 * 3 + 200.0 * 2  # 300 + 400 = 700
+
+
+def test_product_add_invalid_type():
+    p = Product("X", "desc", 10, 1)
+    assert p.__add__("not a product") == NotImplemented
