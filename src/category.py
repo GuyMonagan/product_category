@@ -1,4 +1,5 @@
 from src.product import Product
+from src.category_iterator import CategoryIterator
 
 
 class Category:
@@ -22,15 +23,25 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+
+    def __str__(self) -> str:
+        """ Добавляет строкое отображение для класса Category """
+        total_quantity = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
+
+
+    def __iter__(self):
+        return CategoryIterator(self)
+
+
     def add_product(self, product: Product):
         """Добавляет товар в категорию и увеличивает счётчик товаров."""
         self.__products.append(product)
         Category.product_count += 1
 
     @property
-    def products(self):
-        """Возвращает строку со всеми продуктами в нужном формате."""
-        result = ""
-        for product in self.__products:
-            result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return result.strip()
+    def products(self) -> list[Product]:
+        return self.__products
+
+    def formatted_products(self) -> str:
+        return "\n".join(str(p) for p in self.__products)
