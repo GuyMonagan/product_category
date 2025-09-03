@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Product:
     """Класс, представляющий товар в интернет-магазине."""
 
@@ -17,17 +18,15 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     def __str__(self) -> str:
-        """ Добавляет строкое отображение для класса Product """
+        """Добавляет строкое отображение для класса Product"""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """ Считает общее колличество товаров """
-        if isinstance(other, Product):
-            return self.price * self.quantity + other.price * other.quantity
-        return NotImplemented
-
+        """Считает общее количество товаров одного класса"""
+        if not isinstance(other, type(self)):
+            raise TypeError("Нельзя складывать товары разных типов")
+        return self.price * self.quantity + other.price * other.quantity
 
     @property
     def price(self):

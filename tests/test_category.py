@@ -30,14 +30,22 @@ def test_add_product_appends_and_increments_counter():
 
 
 def test_category_str_variants():
-    c1 = Category("Периферия", "desc", [
-        Product("Мышка", "desc", 100, 4),
-        Product("Клава", "desc", 200, 6),
-    ])
-    c2 = Category("Электроника", "desc", [
-        Product("Товар 1", "desc", 100, 3),
-        Product("Товар 2", "desc", 50, 2),
-    ])
+    c1 = Category(
+        "Периферия",
+        "desc",
+        [
+            Product("Мышка", "desc", 100, 4),
+            Product("Клава", "desc", 200, 6),
+        ],
+    )
+    c2 = Category(
+        "Электроника",
+        "desc",
+        [
+            Product("Товар 1", "desc", 100, 3),
+            Product("Товар 2", "desc", 50, 2),
+        ],
+    )
 
     assert str(c1) == "Периферия, количество продуктов: 10 шт."
     assert str(c2) == "Электроника, количество продуктов: 5 шт."
