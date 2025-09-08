@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 
 
 class BaseProduct(ABC):
@@ -28,5 +29,5 @@ class BaseProduct(ABC):
 
     @classmethod
     @abstractmethod
-    def new_product(cls, product_data: dict, existing_products: list = None):
+    def new_product(cls, product_data: dict, existing_products: Optional[list] = None):
         pass

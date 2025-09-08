@@ -11,11 +11,15 @@ class Product(CreationLoggerMixin, BaseProduct):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if type(self) != type(other):
+        if type(self) is not type(other):
             raise TypeError("Нельзя складывать товары разных типов")
         return self.price * self.quantity + other.price * other.quantity
 
-    @BaseProduct.price.setter
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
     def price(self, new_price):
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
