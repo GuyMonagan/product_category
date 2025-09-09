@@ -34,7 +34,8 @@ class Category:
 
     def add_product(self, product: Product):
         """
-        Добавляет продукт в категорию, если он является экземпляром Product или его наследников.
+        Добавляет продукт в категорию, если он является
+        экземпляром Product или его наследником.
         """
         if not isinstance(product, Product):
             raise TypeError("Можно добавлять только объекты Product или его подклассов")
