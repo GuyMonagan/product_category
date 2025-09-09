@@ -7,6 +7,16 @@ from src.mixins import CreationLoggerMixin
 class Product(CreationLoggerMixin, BaseProduct):
     """Класс, представляющий товар в интернет-магазине."""
 
+    def __init__(self, name: str, description: str, price: float, quantity: int):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
+        self.name = name
+        self.description = description
+        self._price = price
+        self.quantity = quantity
+        super().__init__(name, description, price, quantity)
+
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
