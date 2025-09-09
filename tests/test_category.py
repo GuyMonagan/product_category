@@ -59,3 +59,17 @@ def test_category_iterator_protocol():
     # Используем итерацию напрямую
     names = [p.name for p in cat]
     assert names == ["Товар A", "Товар B"]
+
+
+def test_get_average_price():
+    p1 = Product("Мышка", "Обычная", 1000, 10)
+    p2 = Product("Клавиатура", "Механическая", 2000, 5)
+    category = Category("Периферия", "Комплектующие", [p1, p2])
+
+    expected = (1000 + 2000) / 2
+    assert category.get_average_price() == expected
+
+
+def test_get_average_price_empty_category():
+    category = Category("Пустая", "Нет товаров", [])
+    assert category.get_average_price() == 0.0

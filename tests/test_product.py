@@ -87,3 +87,17 @@ def test_product_add_invalid_type():
     p = Product("X", "desc", 10, 1)
     with pytest.raises(TypeError, match="Нельзя складывать товары разных типов"):
         p + "not a product"
+
+
+def test_product_creation_with_zero_quantity_raises():
+    with pytest.raises(ValueError) as excinfo:
+        Product("Сыр", "Голландский", 250.0, 0)
+
+    assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_product_creation_with_valid_quantity():
+    p = Product("Молоко", "1л", 90.0, 3)
+    assert p.name == "Молоко"
+    assert p.quantity == 3
+    assert p.price == 90.0
